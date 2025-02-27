@@ -7,7 +7,7 @@ import time
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
-task_thread = None  # Потік для фонового процесу
+task_thread = None
 task_running = False # toggle_data_generator()
 
 @app.route('/')

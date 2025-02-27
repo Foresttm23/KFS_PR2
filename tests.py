@@ -81,7 +81,7 @@ class TestElectricityBill(unittest.TestCase):
         result = self.cursor.fetchone()
         self.assertEqual(result[2], 200)
         self.assertEqual(result[3], 110)  # 100 + 10 (накрутка)
-        self.assertEqual(result[4], 10)   # 10 * 2 (тарифф)
+        self.assertEqual(result[4], 10)   # 10 * 1 (тарифф)
 
     def test_low_day_reading(self):
         send_reading({'meter_id': 'meter_4', 'day_reading': 200, 'night_reading': 100, 'type': 'insert',})
