@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лічильники</title>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h2>Панель користувача:</h2>
+    <button id="admin" onclick="toggleAdmin()">Показати адмін-панель</button>
+
+    <div id="userPanel" style="display: block">
+      <h2>Внести показники лічильника</h2>
+      <label>Номер лічильника: <input type="number" id="meter_id" /></label>
+      <label>Днівний показник: <input type="number" id="day_reading" /></label>
+      <div id="day_reading_preview"></div>
+      <label>Нічний показник: <input type="number" id="night_reading" /></label>
+      <div id="night_reading_preview"></div>
+
+      <button onclick="insert_meter_data()">Внести показання</button>
+      <div id="meter_data"></div>
+    </div>
+
+    <!-- ------------------------------------------------------------- -->
+
+    <div id="adminPanel" style="display: none">
+      <h1>Тестування лічильників</h1>
+      <button id="data_generator" onclick="toggle_data_generator_js()">
+        Запустити процес
+      </button>
+
+      <h2>Внести показники тарифів для користувачів</h2>
+      <label>Днівний тариф: <input type="number" id="day_tariff" /></label>
+      <label>Нічний тариф: <input type="number" id="night_tariff" /></label>
+      <label
+        >Днівна накрутка: <input type="number" id="day_adjustment"
+      /></label>
+      <label
+        >Нічна накрутка: <input type="number" id="night_adjustment"
+      /></label>
+
+      <button onclick="insert_tarriffs()">Вставити нові тарифи</button>
+      <div id="new_tarrifs"></div>
+
+      <!-- ------------------------------------------------------------- -->
+
+      <h2>Оновити запис лічильника користувача</h2>
+      <label>ID запису в таблиці: <input type="number" id="id_update" /></label>
+      <label
+        >Днівний показник: <input type="number" id="day_reading_update"
+      /></label>
+      <label
+        >Нічний показник: <input type="number" id="night_reading_update"
+      /></label>
+      <label>Рахунок на оплату: <input type="number" id="bill_update" /></label>
+
+      <button onclick="update_meter_data_js()">Оновити показання</button>
+      <div id="update_meter_data"></div>
+
+      <h2>Видалити запис лічильника користувача</h2>
+      <label>ID запису в таблиці: <input type="number" id="id_delete" /></label>
+
+      <button onclick="delete_meter_data_js()">Видалити показання</button>
+      <div id="delete_meter_data"></div>
+
+      <!-- ------------------------------------------------------------- -->
+
+      <button class="button-spacing" onclick="get_tables_data_js()">
+        Отримати дані
+      </button>
+
+      <div class="tables-container">
+        <div class="scrollable-container">
+          <div class="search-container">
+            <input
+              type="text"
+              id="tariffs_search"
+              placeholder="Пошук у тарифах..."
+            />
+            <div id="tariffs_table" class="tariffs_table_css"></div>
+          </div>
+        </div>
+
+        <div class="scrollable-container">
+          <div class="search-container">
+            <input
+              type="text"
+              id="meters_history_search"
+              placeholder="Пошук у лічильниках..."
+            />
+            <div
+              id="meters_history_table"
+              class="meters_history_table_css"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
