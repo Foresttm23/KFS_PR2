@@ -4,7 +4,19 @@ from config import DB_CONFIG, DEFAULT_DAY_TARIFF, DEFAULT_NIGHT_TARIFF, DEFAULT_
 def get_connection():
     return mysql.connector.connect(**DB_CONFIG)
 
+def create_db():
+    conn = mysql.connector.connect(
+        host=DB_CONFIG['host'],
+        user=DB_CONFIG['user'],
+        password=DB_CONFIG['password']
+    )
+    cursor = conn.cursor()
+    cursor.execute('CREATE DATABASE IF NOT EXISTS electricity_db')
+    conn.close()
+
 def create_tables():
+    create_db()
+
     conn = get_connection()
     cursor = conn.cursor()
 
